@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio user-specific files
+*.user
+*.suo
+.vs/
+
+# Inno Setup output
+Output/
+
+# Other
+*.cache
+*.pdb
+*.xml
+Thumbs.db
+desktop.ini
