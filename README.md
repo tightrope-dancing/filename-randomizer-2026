@@ -1,10 +1,11 @@
 # Filename Randomizer
 
-A lightweight Windows utility that renames all files in a selected folder to random 32-character alphanumeric strings (`a`–`z`, `0`–`9`), preserving file extensions.
+A lightweight Windows utility that renames all files in a selected folder to random alphanumeric strings (`a`–`z`, `0`–`9`) of a chosen length (16–40 characters, default 32), preserving file extensions.
 
 ## Features
 
 - Randomizes filenames in a selected folder to base36 strings (e.g. `k3f7x2q1...4e9z.jpg`)
+- **Name length slider** — choose 16–40 characters; the setting is remembered between sessions
 - **Pin Folder** — lock a frequently-used folder so it survives across sessions
 - **Last-used memory** — automatically restores the last folder you acted on
 - **Windows context menu integration** — right-click any folder and select "Randomize Filenames" to launch with that folder pre-filled
@@ -48,7 +49,7 @@ To build the installer, open `FilenameRandomizer.iss` in [Inno Setup](https://jr
 
 ## Version History
 
-**v1.2.0** — Expanded the character pool from hex (`0`–`9`, `a`–`f`; 16 symbols) to lowercase alphanumeric (`0`–`9`, `a`–`z`; 36 symbols). Name space grows from 16³² ≈ 3.4×10³⁸ to 36³² ≈ 6.3×10⁴⁹ at the same 32-char length. Uppercase excluded because NTFS filenames are case-insensitive.
+**v1.2.0** — Expanded the character pool from hex (`0`–`9`, `a`–`f`; 16 symbols) to lowercase alphanumeric (`0`–`9`, `a`–`z`; 36 symbols). Name space grows from 16³² ≈ 3.4×10³⁸ to 36³² ≈ 6.3×10⁴⁹ at the same 32-char length. Uppercase excluded because NTFS filenames are case-insensitive. Added a name-length slider (16–40, default 32, persisted in settings). Renaming now regenerates a name if it is already taken instead of aborting the batch.
 
 **v1.1.1** — Fixed off-by-one error in name generation (was producing 33-char names); fixed excluded character (`9` was never selected due to incorrect upper bound); command-line argument support for context menu integration
 

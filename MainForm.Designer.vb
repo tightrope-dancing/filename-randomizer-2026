@@ -29,6 +29,9 @@ Partial Class MainForm
         Me.renameButton = New System.Windows.Forms.Button()
         Me.hideFilesCheckBox = New System.Windows.Forms.CheckBox()
         Me.pinButton = New System.Windows.Forms.Button()
+        Me.lengthLabel = New System.Windows.Forms.Label()
+        Me.lengthTrackBar = New System.Windows.Forms.TrackBar()
+        CType(Me.lengthTrackBar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'directoryNameTextBox
@@ -64,7 +67,7 @@ Partial Class MainForm
         'renameButton
         '
         Me.renameButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.renameButton.Location = New System.Drawing.Point(170, 69)
+        Me.renameButton.Location = New System.Drawing.Point(170, 98)
         Me.renameButton.Name = "renameButton"
         Me.renameButton.Size = New System.Drawing.Size(75, 23)
         Me.renameButton.TabIndex = 3
@@ -81,11 +84,34 @@ Partial Class MainForm
         Me.hideFilesCheckBox.Text = "Mark files as &hidden"
         Me.hideFilesCheckBox.UseVisualStyleBackColor = True
         '
+        'lengthLabel
+        '
+        Me.lengthLabel.AutoSize = True
+        Me.lengthLabel.Location = New System.Drawing.Point(10, 72)
+        Me.lengthLabel.Name = "lengthLabel"
+        Me.lengthLabel.Size = New System.Drawing.Size(130, 13)
+        Me.lengthLabel.TabIndex = 5
+        Me.lengthLabel.Text = "Name &length: 32 characters"
+        '
+        'lengthTrackBar
+        '
+        Me.lengthTrackBar.LargeChange = 4
+        Me.lengthTrackBar.Location = New System.Drawing.Point(12, 88)
+        Me.lengthTrackBar.Maximum = 40
+        Me.lengthTrackBar.Minimum = 16
+        Me.lengthTrackBar.Name = "lengthTrackBar"
+        Me.lengthTrackBar.Size = New System.Drawing.Size(151, 45)
+        Me.lengthTrackBar.TabIndex = 6
+        Me.lengthTrackBar.TickFrequency = 4
+        Me.lengthTrackBar.Value = 32
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(253, 101)
+        Me.ClientSize = New System.Drawing.Size(253, 133)
+        Me.Controls.Add(Me.lengthTrackBar)
+        Me.Controls.Add(Me.lengthLabel)
         Me.Controls.Add(Me.pinButton)
         Me.Controls.Add(Me.hideFilesCheckBox)
         Me.Controls.Add(Me.renameButton)
@@ -96,6 +122,7 @@ Partial Class MainForm
         Me.MaximizeBox = False
         Me.Name = "MainForm"
         Me.Text = "Filename Randomizer"
+        CType(Me.lengthTrackBar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -106,5 +133,7 @@ Partial Class MainForm
     Friend WithEvents renameButton As System.Windows.Forms.Button
     Friend WithEvents hideFilesCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents pinButton As System.Windows.Forms.Button
+    Friend WithEvents lengthLabel As System.Windows.Forms.Label
+    Friend WithEvents lengthTrackBar As System.Windows.Forms.TrackBar
 
 End Class
