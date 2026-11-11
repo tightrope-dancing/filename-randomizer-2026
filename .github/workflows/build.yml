@@ -16,9 +16,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: microsoft/setup-msbuild@v2
+      - uses: microsoft/setup-msbuild@v3
 
       - name: Build (Release|x86)
         run: msbuild "Filename Randomizer.sln" /p:Configuration=Release /p:Platform=x86 /m /nologo /verbosity:minimal
@@ -45,14 +45,14 @@ jobs:
         run: '& $env:ISCC FilenameRandomizer.iss'
 
       - name: Upload exe
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: filename-randomizer-exe
           path: bin/Release/Filename Randomizer.exe
           if-no-files-found: error
 
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: filename-randomizer-setup
           path: Output/FilenameRandomizer_Setup.exe
@@ -65,7 +65,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check tag matches installer version
         run: |
@@ -76,11 +76,11 @@ jobs:
             exit 1
           fi
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: filename-randomizer-setup
 
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: FilenameRandomizer_Setup.exe
           generate_release_notes: true
