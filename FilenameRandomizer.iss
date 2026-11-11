@@ -12,8 +12,8 @@ WizardStyle=modern
 PrivilegesRequired=admin
 
 [Files]
-; Point this at your compiled exe - adjust path if needed
-Source: "Filename Randomizer\bin\Release\Filename Randomizer.exe"; DestDir: "{app}"; Flags: ignoreversion
+; Relative to this script: the Release build output of Filename Randomizer.sln
+Source: "bin\Release\Filename Randomizer.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\Filename Randomizer"; Filename: "{app}\Filename Randomizer.exe"
