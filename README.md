@@ -1,10 +1,10 @@
 # Filename Randomizer
 
-A lightweight Windows utility that renames all files in a selected folder to random 32-character hexadecimal strings, preserving file extensions.
+A lightweight Windows utility that renames all files in a selected folder to random 32-character alphanumeric strings (`a`–`z`, `0`–`9`), preserving file extensions.
 
 ## Features
 
-- Randomizes filenames in a selected folder to hex strings (e.g. `a3f7c2d1...4e9b.jpg`)
+- Randomizes filenames in a selected folder to base36 strings (e.g. `k3f7x2q1...4e9z.jpg`)
 - **Pin Folder** — lock a frequently-used folder so it survives across sessions
 - **Last-used memory** — automatically restores the last folder you acted on
 - **Windows context menu integration** — right-click any folder and select "Randomize Filenames" to launch with that folder pre-filled
@@ -47,6 +47,8 @@ Renaming is **immediate and irreversible.** There is no undo. The original filen
 To build the installer, open `FilenameRandomizer.iss` in [Inno Setup](https://jrsoftware.org/isinfo.php) and update the `Source:` path in the `[Files]` section to match your local build output, then Build → Compile.
 
 ## Version History
+
+**v1.2.0** — Expanded the character pool from hex (`0`–`9`, `a`–`f`; 16 symbols) to lowercase alphanumeric (`0`–`9`, `a`–`z`; 36 symbols). Name space grows from 16³² ≈ 3.4×10³⁸ to 36³² ≈ 6.3×10⁴⁹ at the same 32-char length. Uppercase excluded because NTFS filenames are case-insensitive.
 
 **v1.1.1** — Fixed off-by-one error in name generation (was producing 33-char names); fixed excluded character (`9` was never selected due to incorrect upper bound); command-line argument support for context menu integration
 

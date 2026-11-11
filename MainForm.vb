@@ -3,7 +3,11 @@ Imports System.IO
 Public Class MainForm
 
     Public randomizer As New Random
-    Public characters As String() = {"a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+    ' Lowercase a-z + 0-9 (base36). Uppercase is deliberately excluded: NTFS is case-insensitive,
+    ' so "aB" and "Ab" are the same filename and mixed case would add no distinct names on Windows.
+    Public characters As String() = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+                                     "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                                     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
     Private isPinned As Boolean = False
 
     Private Sub browseButton_Click(sender As System.Object, e As System.EventArgs) Handles browseButton.Click
@@ -44,7 +48,7 @@ Public Class MainForm
                         protectedFileFound = True
                     Else
                         extension = Path.GetExtension(fileName)
-                        My.Computer.FileSystem.RenameFile(fileName, randomHexFileName(32) & extension)
+                        My.Computer.FileSystem.RenameFile(fileName, randomFileName(32) & extension)
                     End If
                 Next
 
@@ -72,7 +76,7 @@ Public Class MainForm
         End Try
     End Sub
 
-    Public Function randomHexFileName(fileNameLength)
+    Public Function randomFileName(fileNameLength)
         Dim returnValue As String = Nothing
 
         For counter As Integer = 1 To fileNameLength Step 1
