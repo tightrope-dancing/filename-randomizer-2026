@@ -101,6 +101,18 @@ Namespace My
                 Me("PinnedPath") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("32")>  _
+        Public Property NameLength() As Integer
+            Get
+                Return CType(Me("NameLength"),Integer)
+            End Get
+            Set
+                Me("NameLength") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

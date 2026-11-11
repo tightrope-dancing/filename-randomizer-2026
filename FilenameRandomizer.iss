@@ -1,6 +1,6 @@
 [Setup]
 AppName=Filename Randomizer
-AppVersion=1.1.1
+AppVersion=1.2.0
 AppPublisher=xdpirate
 DefaultDirName={autopf}\Filename Randomizer
 DefaultGroupName=Filename Randomizer
@@ -12,8 +12,8 @@ WizardStyle=modern
 PrivilegesRequired=admin
 
 [Files]
-; Point this at your compiled exe - adjust path if needed
-Source: "Filename Randomizer\bin\Release\Filename Randomizer.exe"; DestDir: "{app}"; Flags: ignoreversion
+; Relative to this script: the Release build output of Filename Randomizer.sln
+Source: "bin\Release\Filename Randomizer.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\Filename Randomizer"; Filename: "{app}\Filename Randomizer.exe"

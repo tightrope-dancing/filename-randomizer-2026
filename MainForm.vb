@@ -3,8 +3,17 @@ Imports System.IO
 Public Class MainForm
 
     Public randomizer As New Random
-    Public characters As String() = {"a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+    ' Lowercase a-z + 0-9 (base36). Uppercase is deliberately excluded: NTFS is case-insensitive,
+    ' so "aB" and "Ab" are the same filename and mixed case would add no distinct names on Windows.
+    Public characters As String() = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+                                     "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                                     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
     Private isPinned As Boolean = False
+
+    ' Bounds for the name-length slider (applied to lengthTrackBar on load).
+    Private Const MinNameLength As Integer = 16
+    Private Const MaxNameLength As Integer = 40
+    Private Const DefaultNameLength As Integer = 32
 
     Private Sub browseButton_Click(sender As System.Object, e As System.EventArgs) Handles browseButton.Click
         Dim response As DialogResult = FolderBrowserDialog1.ShowDialog()
@@ -44,7 +53,13 @@ Public Class MainForm
                         protectedFileFound = True
                     Else
                         extension = Path.GetExtension(fileName)
-                        My.Computer.FileSystem.RenameFile(fileName, randomHexFileName(32) & extension)
+                        ' Regenerate on the (astronomically unlikely) chance the name is already taken,
+                        ' so a collision can't abort the batch halfway through.
+                        Dim newName As String
+                        Do
+                            newName = randomFileName(lengthTrackBar.Value) & extension
+                        Loop While File.Exists(Path.Combine(Path.GetDirectoryName(fileName), newName))
+                        My.Computer.FileSystem.RenameFile(fileName, newName)
                     End If
                 Next
 
@@ -72,7 +87,7 @@ Public Class MainForm
         End Try
     End Sub
 
-    Public Function randomHexFileName(fileNameLength)
+    Public Function randomFileName(fileNameLength)
         Dim returnValue As String = Nothing
 
         For counter As Integer = 1 To fileNameLength Step 1
@@ -87,7 +102,12 @@ Public Class MainForm
         My.Settings.HiddenChecked = hideFilesCheckBox.Checked
         My.Settings.Pinned = isPinned
         My.Settings.PinnedPath = If(isPinned, directoryNameTextBox.Text, My.Settings.PinnedPath)
+        My.Settings.NameLength = lengthTrackBar.Value
         My.Settings.Save()
+    End Sub
+
+    Private Sub lengthTrackBar_ValueChanged(sender As Object, e As System.EventArgs) Handles lengthTrackBar.ValueChanged
+        lengthLabel.Text = "Name &length: " & lengthTrackBar.Value & " characters"
     End Sub
 
     Private Sub MainForm_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -116,6 +136,14 @@ Public Class MainForm
         End If
 
         hideFilesCheckBox.Checked = My.Settings.HiddenChecked
+
+        ' Clamp in case the saved value predates the current slider range
+        lengthTrackBar.Minimum = MinNameLength
+        lengthTrackBar.Maximum = MaxNameLength
+        Dim savedLength As Integer = My.Settings.NameLength
+        If savedLength < MinNameLength OrElse savedLength > MaxNameLength Then savedLength = DefaultNameLength
+        lengthTrackBar.Value = savedLength
+        lengthTrackBar_ValueChanged(lengthTrackBar, EventArgs.Empty)
     End Sub
 
 End Class
