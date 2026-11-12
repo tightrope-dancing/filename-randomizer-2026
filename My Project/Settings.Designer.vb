@@ -113,6 +113,30 @@ Namespace My
                 Me("NameLength") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property RecentFolders() As String
+            Get
+                Return CType(Me("RecentFolders"),String)
+            End Get
+            Set
+                Me("RecentFolders") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property UpgradeRequired() As Boolean
+            Get
+                Return CType(Me("UpgradeRequired"),Boolean)
+            End Get
+            Set
+                Me("UpgradeRequired") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

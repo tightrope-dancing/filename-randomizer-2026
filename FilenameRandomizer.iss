@@ -1,6 +1,6 @@
 [Setup]
 AppName=Filename Randomizer
-AppVersion=1.2.0
+AppVersion=1.3.0
 AppPublisher=xdpirate
 DefaultDirName={autopf}\Filename Randomizer
 DefaultGroupName=Filename Randomizer
