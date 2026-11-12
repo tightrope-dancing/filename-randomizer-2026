@@ -27,8 +27,14 @@ Public Class MainForm
     Private folderListPaths As New List(Of String)
     Private suppressListSelection As Boolean = False
 
+    ' Opening size of the Browse For Folder window, roughly a tall column; the user's own resize
+    ' is remembered in My.Settings.BrowseDialogSize and used from then on.
+    Private Shared ReadOnly DefaultBrowseDialogSize As New Drawing.Size(325, 810)
+
     Private Sub browseButton_Click(sender As System.Object, e As System.EventArgs) Handles browseButton.Click
-        Dim response As DialogResult = FolderBrowserDialog1.ShowDialog()
+        Dim dialogSize As Drawing.Size = My.Settings.BrowseDialogSize
+        Dim response As DialogResult = FolderDialogSizer.ShowDialog(FolderBrowserDialog1, Me, dialogSize, DefaultBrowseDialogSize)
+        My.Settings.BrowseDialogSize = dialogSize
         Select Case response
             Case Windows.Forms.DialogResult.OK
                 directoryNameTextBox.Text = FolderBrowserDialog1.SelectedPath

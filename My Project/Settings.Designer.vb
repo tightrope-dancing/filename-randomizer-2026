@@ -137,6 +137,18 @@ Namespace My
                 Me("UpgradeRequired") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property BrowseDialogSize() As Global.System.Drawing.Size
+            Get
+                Return CType(Me("BrowseDialogSize"),Global.System.Drawing.Size)
+            End Get
+            Set
+                Me("BrowseDialogSize") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -69,7 +69,7 @@ To build the installer, open `FilenameRandomizer.iss` in [Inno Setup](https://jr
 
 ## Version History
 
-**v1.3.0** — Replaced the single Pin Folder toggle with a *Recent folders* list (last 3 renamed folders, click to reuse) plus one pinned folder that stays at the top and never ages out; Browse is no longer disabled while pinned. Window widened so paths are readable. Existing pinned/last-used settings migrate automatically. Settings now carry over across version updates (previously each new version started with default settings).
+**v1.3.0** — Replaced the single Pin Folder toggle with a *Recent folders* list (last 3 renamed folders, click to reuse) plus one pinned folder that stays at the top and never ages out; Browse is no longer disabled while pinned. Window widened so paths are readable. The Browse For Folder window now opens as a tall 325×810 column (shrunk to fit smaller screens) and remembers the size you leave it at. Existing pinned/last-used settings migrate automatically. Settings now carry over across version updates (previously each new version started with default settings).
 
 **v1.2.0** — Expanded the character pool from hex (`0`–`9`, `a`–`f`; 16 symbols) to lowercase alphanumeric (`0`–`9`, `a`–`z`; 36 symbols). Name space grows from 16³² ≈ 3.4×10³⁸ to 36³² ≈ 6.3×10⁴⁹ at the same 32-char length. Uppercase excluded because NTFS filenames are case-insensitive. Added a name-length slider (16–40, default 32, persisted in settings). Renaming now regenerates a name if it is already taken instead of aborting the batch. Added GitHub Actions build (exe + installer on every push, Release on `v*` tags), solution file and `app.config`; assembly version synced to 1.2.0.
 
