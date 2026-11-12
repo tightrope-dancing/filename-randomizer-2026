@@ -19,5 +19,14 @@
     <Setting Name="NameLength" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">32</Value>
     </Setting>
+    <Setting Name="RecentFolders" Type="System.String" Scope="User">
+      <Value Profile="(Default)"></Value>
+    </Setting>
+    <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BrowseDialogSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
